@@ -9,9 +9,14 @@ import { TodoProvider } from "../../providers/todo/todo";
 })
 export class HomePage {
   public todos = [];
+  public reorderIsEnabled = false;
 
   constructor(private todoProvider: TodoProvider, public navCtrl: NavController, private alertController: AlertController) {
     this.todos = this.todoProvider.getTodos();
+  }
+
+  toggleReorder() {
+    this.reorderIsEnabled = !this.reorderIsEnabled;
   }
 
   openTodoAlert() {
