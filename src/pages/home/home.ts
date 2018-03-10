@@ -55,12 +55,15 @@ export class HomePage {
             let todoText;
             todoText = inputData.addTodoInput;
             this.todoProvider.addTodo(todoText);
-            let addTodoToast = this.toastController.create({
-              message: "Todo Added!",
-              duration: 2000
+
+            addTodoAlert.onDidDismiss(() => {
+              let addTodoToast = this.toastController.create({
+                message: "Todo Added!",
+                duration: 2000
+              });
+              
+              addTodoToast.present();
             });
-            
-            addTodoToast.present();
           }
         }
       ]
