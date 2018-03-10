@@ -30,6 +30,13 @@ export class HomePage {
 
   archiveTodo(index) {
     this.todoProvider.archiveTodo(index);
+
+    let addTodoToast = this.toastController.create({
+      message: "Todo Deleted!",
+      duration: 2000
+    });
+    
+    addTodoToast.present();
   }
 
   goToArchivePage() {
