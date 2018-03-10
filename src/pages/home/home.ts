@@ -1,6 +1,6 @@
 import { ArchivedTodosPage } from './../archived-todos/archived-todos';
 import { Component } from '@angular/core';
-import { NavController, AlertController, reorderArray } from 'ionic-angular';
+import { NavController, AlertController, reorderArray, ToastController } from 'ionic-angular';
 
 import { TodoProvider } from "../../providers/todo/todo";
 
@@ -12,8 +12,12 @@ export class HomePage {
   public todos = [];
   public reorderIsEnabled = false;
 
-  constructor(private todoProvider: TodoProvider, public navCtrl: NavController, private alertController: AlertController) {
-    this.todos = this.todoProvider.getTodos();
+  constructor(
+    private todoProvider: TodoProvider, 
+    private navCtrl: NavController, 
+    private alertController: AlertController,
+    private toastController: ToastController) {
+      this.todos = this.todoProvider.getTodos();
   }
 
   toggleReorder() {
@@ -51,6 +55,12 @@ export class HomePage {
             let todoText;
             todoText = inputData.addTodoInput;
             this.todoProvider.addTodo(todoText);
+            let addTodoToast = this.toastController.create({
+              message: "Todo Added!",
+              duration: 2000
+            });
+            
+            addTodoToast.present();
           }
         }
       ]
